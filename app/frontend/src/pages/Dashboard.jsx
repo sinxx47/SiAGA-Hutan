@@ -27,10 +27,12 @@ export default function Dashboard() {
   const online = useOnline(deviceStatus, latest);
   const disabled = conn !== "connected";
 
-  const onSend = useCallback(async (cmd, okMsg) => {
+  const onSend = useCallback(async (cmd, okMsg, topic = null) => {
     try {
-      await sendCommand(cmd);
-      toast.success(okMsg, { description: `${TOPICS.command} · ${JSON.stringify(cmd)}` });
+      await sendCommand(cmd, topic);
+      const target = topic || TOPICS.command;
+      const desc = typeof cmd === "string" ? `${target} · ${cmd}` : `${target} · ${JSON.stringify(cmd)}`;
+      toast.success(okMsg, { description: desc });
     } catch (e) {
       toast.error("Perintah gagal dikirim", { description: e.message });
     }
@@ -53,8 +55,7 @@ export default function Dashboard() {
             <div className="xl:col-span-8"><HistoryPanel /></div>
           </div>
           <footer className="text-xs text-slate-400 flex flex-wrap gap-x-6 gap-y-1 pt-2 mono">
-            <span>{TOPICS.telemetry}</span><span>{TOPICS.alert}</span><span>{TOPICS.command}</span><span>{TOPICS.status}</span>
-          </footer>
+            <span>{TOPICS.telemetry}</span><span>{TOPICS.alert}</span><span>{TOPICS.command}</span><span>{TOPICS.status}</span><span>{TOPICS.trigger_cam}</span>          </footer>
         </div>
       </main>
     </div>
