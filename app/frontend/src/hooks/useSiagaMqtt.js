@@ -75,15 +75,21 @@ export function useSiagaMqtt() {
   }, [pushEvent]);
 
   const sendCommand = useCallback(
-    (cmd) =>
+    (cmd, targetTopic = null) =>
       new Promise((resolve, reject) => {
         const client = clientRef.current;
         if (!client || !client.connected) return reject(new Error("Broker MQTT tidak terhubung"));
-        const body = { ...cmd, ts: Date.now(), source: "web-dashboard" };
-        client.publish(TOPICS.command, JSON.stringify(body), { qos: 1 }, (err) => {
+        const topic = targetTopic || TOPICS.command;
+        const payload = typeof cmd === "string" ? cmd : JSON.stringify({ ...cmd, ts: Date.now(), source: "web-dashboard" });
+        client.publish(topic, payload, { qos: 1 }, (err) => {
           if (err) return reject(err);
-          pushEvent(eventFrom("command", `CMD ${JSON.stringify(cmd)}`));
-          resolve(body);
+          pushEvent(eventFrom("command", `CMD [${topic}]: ${payload}`));
+          // Jika perintah TRIGGER_CAM dikirim ke topik khusus, publikasikan juga ke TOPICS.command
+          // agar kompatibel dengan firmware ESP32-S3 yang memantau TOPIC_CMD
+          if (cmd === "TRIGGER_CAM" && topic !== TOPICS.command) {
+            client.publish(TOPICS.command, "TRIGGER_CAM", { qos: 1 });
+          }
+          resolve(payload);
         });
       }),
     [pushEvent]
