@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 90 12% 96%;
+        --foreground: 160 30% 10%;
+        --card: 0 0% 100%;
+        --card-foreground: 160 30% 10%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 160 30% 10%;
+        --primary: 142 72% 29%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 100 12% 94%;
+        --secondary-foreground: 160 30% 12%;
+        --muted: 100 12% 94%;
+        --muted-foreground: 160 6% 42%;
+        --accent: 100 12% 94%;
+        --accent-foreground: 160 30% 12%;
+        --destructive: 0 72% 51%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 100 10% 89%;
+        --input: 100 10% 87%;
+        --ring: 142 72% 29%;
+        --radius: 0.75rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        -webkit-font-smoothing: antialiased;
+    }
+    ::selection {
+        background: rgba(21, 128, 61, 0.18);
+    }
+}
+
+.num {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+}
+
+.mono {
+    font-family: "JetBrains Mono", monospace;
+    font-variant-numeric: tabular-nums;
+}
+
+.card-pro {
+    background: #fff;
+    border: 1px solid #e5e9e3;
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.03);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.card-pro:hover {
+    box-shadow: 0 8px 24px -8px rgba(16, 40, 24, 0.12);
+    border-color: #d8ded5;
+}
+
+@keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.rise {
+    animation: rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes ring {
+    0% { stroke-opacity: 0.9; stroke-width: 2; }
+    100% { stroke-opacity: 0; stroke-width: 14; }
+}
+
+.pulse-ring {
+    animation: ring 1.6s ease-out infinite;
+}
+
+@keyframes spin-fan {
+    to { transform: rotate(360deg); }
+}
+
+.fan-spin {
+    animation: spin-fan linear infinite;
+}
+
+.leaflet-container {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    border-radius: 16px;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d6ddd3; border-radius: 8px; }

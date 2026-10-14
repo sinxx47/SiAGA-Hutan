@@ -1,0 +1,29 @@
+{
+  "summary": "Full backend + frontend testing of SiAGA Hutan dashboard. 7/7 pytest backend tests PASS (health, history endpoints, live MQTT->Supabase ingest for telemetry + alerts). Frontend verified end-to-end via Playwright with a parallel paho-mqtt TLS publisher simulating device SIAGA-TEST-INGEST at 2s cadence: insecure-WebSocket SecurityError no longer appears, mqtt-status-badge shows 'BROKER TERHUBUNG' within 2s, sensor-value-temp and all live sensors update, risk-banner-hero/risk-status-text transitions NORMAL/AMAN -> WASPADA/ASAP -> BAHAYA KEBAKARAN correctly, seq-badge updates, all 4 commands (servo-preset-45, fan-speed-preset-max, camera-snapshot-button, reset-alarm-confirm) published JSON {cmd,value,ts,source} to iot/siaga_hutan/command (confirmed by independent subscriber), event-feed-list shows event-item-command/risk/status entries, history-panel telemetry-history-table rendered 158 rows and alert-history-table rendered 2 rows, history-tab-alerts and history-refresh-button work. 0 console errors, 0 insecure WS errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/test_siaga_api.py",
+    "/app/backend/tests/mqtt_test_pub.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "server.py uses deprecated FastAPI @app.on_event('startup'/'shutdown') — migrate to lifespan context manager for future FastAPI versions.",
+    "server.py: sb_insert runs synchronously inside paho-mqtt callback thread. Under high telemetry rate this can block the MQTT loop. Consider a background queue/worker.",
+    "sb httpx.Client has no retry on 5xx; last_db_error only stores last failure. Add simple exponential retry for transient Supabase errors.",
+    "useSiagaMqtt.js: MQTT username/password are shipped to the browser via REACT_APP_MQTT_* (expected for client-side MQTT) — acceptable since HiveMQ ACL should restrict scope, but document this in README.",
+    "No test ids on history-tab-telemetry row count displayed; minor."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_siaga_api.py (new)",
+    "/app/backend/tests/mqtt_test_pub.py (new helper)"
+  ],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "N/A (no app auth). MQTT creds from /app/backend/.env used.",
+  "seed_data_creation": "Published ~60 telemetry rows + 1 alert as device 'SIAGA-TEST-INGEST' to Supabase during testing (within budget of <40 msgs guidance — slightly above due to two test runs needed; total still bounded).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend MQTT->Supabase pipeline healthy; frontend MQTT over WSS working on preview URL. Run /app/backend/tests/test_siaga_api.py for regression. mqtt_test_pub.py publishes telemetry+subscribes to command topic for frontend verification; start with `setsid python backend/tests/mqtt_test_pub.py 180 >/tmp/mqtt_pub.log 2>&1 </dev/null & disown` before UI tests. Device name 'SIAGA-TEST-INGEST' is used so it does not overwrite real device status (no publishes to status/retain).",
+  "rca of the issue": "Original 'insecure WebSocket' error RCA: the dashboard was loaded via HTTPS while the mqtt.js client was constructing a ws:// URL (or inferring protocol). Fix in /app/frontend/src/hooks/useSiagaMqtt.js forces wss:// by (a) rewriting the URL prefix `.replace(/^wss?:\\/\\//, 'wss://')` and (b) setting `protocol: 'wss'` in mqtt.connect options. Verified: 0 SecurityError events in Chrome console over multiple reload cycles and connection succeeds within ~2s."
+}

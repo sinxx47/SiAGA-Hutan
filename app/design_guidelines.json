@@ -1,0 +1,206 @@
+{
+  "project_name": "SiAGA Hutan - Forest Sentinel & Acoustic Fire Guard",
+  "archetype": "THE PERFORMANCE PRO & MILITARY TACTICAL TELEMETRY",
+  "theme": "Ultra-sleek Dark Mode (Aerospace & Military Tactical Interface)",
+  "language": "Bahasa Indonesia",
+  "colors": {
+    "background": "#020617",
+    "card_background": "rgba(15, 23, 42, 0.75)",
+    "card_border": "rgba(51, 65, 85, 0.5)",
+    "safe_emerald": "#10B981",
+    "warning_amber": "#F59E0B",
+    "critical_crimson": "#EF4444",
+    "telemetry_cyan": "#06B6D4",
+    "text_primary": "#F8FAFC",
+    "text_secondary": "#94A3B8",
+    "text_muted": "#64748B",
+    "accent_glow": "rgba(6, 182, 212, 0.15)"
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Inter, sans-serif",
+      "h1": "text-2xl md:text-3xl font-bold tracking-tight text-slate-50",
+      "h2": "text-lg md:text-xl font-semibold tracking-tight text-slate-100",
+      "h3": "text-sm md:text-base font-semibold uppercase tracking-wider text-slate-300"
+    },
+    "telemetry_values": {
+      "font_family": "'JetBrains Mono', 'Roboto Mono', monospace",
+      "hero_val": "text-4xl md:text-5xl font-extrabold tracking-tight",
+      "metric_val": "text-2xl md:text-3xl font-bold font-mono tracking-tight",
+      "sub_val": "text-xs font-mono text-slate-400"
+    },
+    "body": {
+      "font_family": "Inter, sans-serif",
+      "standard": "text-sm leading-relaxed text-slate-300",
+      "small": "text-xs leading-normal text-slate-400"
+    }
+  },
+  "spacing_and_layout": {
+    "dashboard_grid": "grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-6 p-4 md:p-6 lg:p-8 max-w-[1700px] mx-auto",
+    "cards": "rounded-xl border border-slate-800/80 bg-slate-900/70 backdrop-blur-xl p-5 shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-slate-700/80",
+    "hero_banner": "col-span-full rounded-2xl p-6 border transition-all duration-500 relative flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl overflow-hidden",
+    "sensor_grid": "col-span-12 lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4",
+    "camera_control_panel": "col-span-12 lg:col-span-4 flex flex-col gap-4",
+    "chart_section": "col-span-12 lg:col-span-8 space-y-6",
+    "logs_section": "col-span-12 lg:col-span-4 space-y-6"
+  },
+  "visual_enhancers": {
+    "glassmorphism": "backdrop-blur-xl bg-slate-900/80 border border-slate-800/80 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]",
+    "glowing_borders": {
+      "safe": "border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.15)]",
+      "warning": "border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.2)]",
+      "critical": "border-red-500/60 shadow-[0_0_30px_rgba(239,68,68,0.35)] animate-pulse"
+    },
+    "tactical_hud_overlay": "absolute top-2 right-2 flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-slate-500 bg-slate-950/60 px-2 py-0.5 rounded border border-slate-800/50",
+    "grid_background": "bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px]"
+  },
+  "key_features_and_components": {
+    "header": {
+      "title": "SiAGA HUTAN",
+      "subtitle": "Forest Sentinel & Acoustic Fire Guard - Pos Monitoring Edge-IoT",
+      "badges": [
+        "MQTT: HiveMQ Cloud (WSS)",
+        "Topik Telemetri: iot/siaga_hutan/telemetry",
+        "LWT Status: ONLINE / OFFLINE",
+        "ESP32-CAM Panning Node"
+      ]
+    },
+    "risk_hero_banner": {
+      "levels": {
+        "0": {
+          "label": "Tingkat Risiko 0: NORMAL / AMAN",
+          "color": "#10B981",
+          "description": "Kondisi ekosistem hutan stabil. Tidak terdeteksi indikasi asap, gas berbahaya, atau akustik gergaji mesin.",
+          "badge_bg": "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
+        },
+        "1": {
+          "label": "Tingkat Risiko 1: PERINGATAN / WASPADA (ASAP)",
+          "color": "#F59E0B",
+          "description": "Terdeteksi lonjakan partikel debu/asap atau fluktuasi gas Rs. Sistem meningkatkan frekuensi pemantauan.",
+          "badge_bg": "bg-amber-500/10 text-amber-400 border-amber-500/30"
+        },
+        "2": {
+          "label": "Tingkat Risiko 2: CRITICAL FIRE / BAHAYA DARURAT",
+          "color": "#EF4444",
+          "description": "Suhu ekstrim & puncak akustik terdeteksi! Kipas pemadam otomatis diaktifkan dan servo melakukan pemindaian otomatis.",
+          "badge_bg": "bg-red-500/20 text-red-400 border-red-500/50 animate-pulse"
+        }
+      }
+    },
+    "sensor_cards": [
+      {
+        "id": "temp",
+        "label": "Suhu Udara (Temp)",
+        "unit": "°C",
+        "icon": "Thermometer",
+        "color": "#06B6D4"
+      },
+      {
+        "id": "hum",
+        "label": "Kelembaban (Humidity)",
+        "unit": "% RH",
+        "icon": "Droplets",
+        "color": "#3B82F6"
+      },
+      {
+        "id": "dust",
+        "label": "Kerapatan Debu (Dust)",
+        "unit": "µg/m³",
+        "icon": "Wind",
+        "color": "#F59E0B"
+      },
+      {
+        "id": "gas_v",
+        "label": "Tegangan Sensor Gas (Gas V)",
+        "unit": "V",
+        "icon": "Zap",
+        "color": "#8B5CF6"
+      },
+      {
+        "id": "gas_rs",
+        "label": "Resistansi Sensor Gas (Rs)",
+        "unit": "kΩ",
+        "icon": "Activity",
+        "color": "#EC4899"
+      },
+      {
+        "id": "rms",
+        "label": "Akustik RMS Signature",
+        "unit": "RMS",
+        "icon": "Volume2",
+        "color": "#10B981"
+      }
+    ],
+    "actuators_and_commands": {
+      "servo_pan": {
+        "title": "Servo Pan Surveillance",
+        "range": "0° - 180°",
+        "control": "Slider + Preset Angles (0°, 45°, 90°, 135°, 180°)",
+        "topic": "iot/siaga_hutan/command"
+      },
+      "fan_speed": {
+        "title": "Aktuator Kipas Pemadam (Fan Speed)",
+        "range": "0 - 255 PWM",
+        "presets": ["0 (MATI)", "128 (SEDANG)", "255 (MAKSIMAL)"],
+        "topic": "iot/siaga_hutan/command"
+      },
+      "cam_ack": {
+        "title": "Kamera Visual ESP32-CAM",
+        "features": ["Trigger Capture Snapshot", "Status Cam Ack Indicator", "Live Camera Feed Mirror"]
+      },
+      "reset_alarm": {
+        "title": "Reset Sirine / Alarm Darurat",
+        "action": "Kirim Perintah Reset Alarm ke Edge Node"
+      }
+    },
+    "data_history_and_charts": {
+      "live_charts": "Recharts Area/Line chart dengan gradien glowing (Suhu vs Kelembaban, Respon Gas, Akustik RMS)",
+      "supabase_table": "Tabel riwayat telemetri & log peringatan terkoneksi Supabase dengan filter rentang waktu & pagination."
+    }
+  },
+  "image_urls": [
+    {
+      "category": "hero_background",
+      "description": "Aerial view of lush tropical forest canopy with surveillance drone perspective",
+      "url": "https://images.unsplash.com/photo-1727276885413-44d946b88c2a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwyfHx0cm9waWNhbCUyMGZvcmVzdCUyMGFlcmlhbCUyMGRyb25lJTIwZmlyZSUyMHN1cnZlaWxsYW5jZXxlbnwwfHx8fDE3OTE3NzE3NDJ8MA&ixlib=rb-4.1.0&q=85"
+    },
+    {
+      "category": "esp32_cam_feed",
+      "description": "Deep jungle canopy perspective for simulated surveillance video feed",
+      "url": "https://images.unsplash.com/photo-1697350978674-4b40261b0dc3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHxfHx0cm9waWNhbCUyMGZvcmVzdCUyMGFlcmlhbCUyMGRyb25lJTIwZmlyZSUyMHN1cnZlaWxsYW5jZXxlbnwwfHx8fDE3OTE3NzE3NDJ8MA&ixlib=rb-4.1.0&q=85"
+    },
+    {
+      "category": "mountain_fog_view",
+      "description": "Tropical mountain ridge with fog for ambient tactical backdrop",
+      "url": "https://images.unsplash.com/photo-1727369828790-597be2b66f8c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwzfHx0cm9waWNhbCUyMGZvcmVzdCUyMGFlcmlhbCUyMGRyb25lJTIwZmlyZSUyMHN1cnZlaWxsYW5jZXxlbnwwfHx8fDE3OTE3NzE3NDJ8MA&ixlib=rb-4.1.0&q=85"
+    }
+  ],
+  "testing_and_qa": {
+    "data_testid_convention": "Semua elemen interaktif (tombol, slider, tab, switch, chart container, badge) WAJIB menggunakan attribute data-testid dalam kebab-case.",
+    "examples": [
+      "data-testid='mqtt-status-badge'",
+      "data-testid='risk-banner-hero'",
+      "data-testid='sensor-card-temp'",
+      "data-testid='servo-pan-slider'",
+      "data-testid='fan-speed-preset-max'",
+      "data-testid='camera-snapshot-button'",
+      "data-testid='reset-alarm-button'",
+      "data-testid='telemetry-history-table'"
+    ]
+  },
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "You MUST NOT apply universal transition (e.g., transition: all). Always add transitions for specific interactive elements like button, input excluding transforms.",
+    "You MUST NOT center align the app container. Keep tactical, left-aligned / structured grid flow.",
+    "Always use modern button styles like pill-shaped, or sharp tactical button with interaction animations & color relevant to the app style.",
+    "NEVER use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons. Use lucide-react or @phosphor-icons/react icons exclusively.",
+    "Every interaction needs micro-animations - hover states, transitions, glow pulses, and live data tick animations.",
+    "Use generous spacing (p-4 to p-8) and keep strict contrast ratios so tactical text on dark background remains readable.",
+    "Ensure all components are strictly implemented in React .js / .jsx format.",
+    "Ensure all data-testid attributes are preserved for automated QA testing."
+  ]
+}
