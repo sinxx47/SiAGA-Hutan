@@ -1,6 +1,6 @@
 import { Camera, ShieldCheck, TriangleAlert, Flame, Clock, CheckCircle2, CircleDashed } from "lucide-react";
 import { Chip } from "./Panel";
-import { riskMeta, clock } from "@/lib/siaga";
+import { riskMeta, clock, TOPICS } from "@/lib/siaga";
 
 const ICON = { safe: ShieldCheck, warn: TriangleAlert, crit: Flame, unknown: Clock };
 
@@ -28,7 +28,7 @@ export const AlertStatus = ({ latest, onSend, disabled }) => {
         <div className="flex items-center justify-between mb-2.5">
           <span className="text-sm font-semibold text-slate-700">Camera Snapshot</span>
           <button data-testid="camera-snapshot-button" disabled={disabled}
-            onClick={() => onSend({ cmd: "capture" }, "Perintah capture dikirim ke ESP32-CAM")}
+            onClick={() => onSend("TRIGGER_CAM", "Perintah capture dikirim ke ESP32-CAM", TOPICS.trigger_cam)}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 border border-slate-200 rounded-lg px-3 py-1.5 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-800 active:scale-95 transition-[background-color,border-color,color,transform] duration-150 disabled:opacity-40 disabled:pointer-events-none">
             <Camera className="w-3.5 h-3.5" /> SNAP
           </button>
