@@ -3,6 +3,7 @@ export const TOPICS = {
   alert: "iot/siaga_hutan/alert",
   command: "iot/siaga_hutan/command",
   status: "iot/siaga_hutan/status",
+  trigger_cam: "TRIGGER_CAM",
 };
 
 export const RISK = {
@@ -28,7 +29,7 @@ export const SENSORS = [
 
 export const TONE = { green: "#15803D", orange: "#EA580C", red: "#DC2626", amber: "#D97706" };
 
-export const NODE_LOCATION = { lat: -0.9312, lng: 116.7425, name: "Pos Sentinel Sepaku" };
+export const NODE_LOCATION = { lat: -7.7725, lng: 112.5380, name: "Pos Pantau Tahura Raden Soerjo, Malang" };
 
 export const fmt = (v, d = 2) => (typeof v === "number" && !Number.isNaN(v) ? v.toFixed(d) : "—");
 
